@@ -96,6 +96,7 @@ function InputSelect({
   const handlePickerSubmit = useCallback(() => {
     let selectedItem = options.find((_item) => _item.value === selectedPickerValue);
 
+
     // if selectedItem is undefined, set selectedPicker using first options
     if (selectedItem === undefined) {
       selectedItem = options[0];
@@ -202,8 +203,7 @@ function InputSelect({
                   bg="white"
                   placeholder={placeholder}
                   value={selectedPicker ? selectedPicker.label : ''}
-                  InputRightElement={<SharedFontAwesome icon={faAngleDown} color="black" size={20} />
-                  }
+                  InputRightElement={name === "month" || name === "gender" ? <SharedFontAwesome icon={faAngleDown} color="#ABB2B9" size={20} /> : <Text></Text>}
                 />
               </Box >
             </TouchableOpacity>

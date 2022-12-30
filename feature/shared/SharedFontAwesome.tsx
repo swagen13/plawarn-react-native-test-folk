@@ -33,7 +33,7 @@ function SharedFontAwesome({ icon, color, size = 16 }: SharedFontAwesomeProps) {
 
   return (
     <>
-      <FontAwesomeIcon icon={icon} color={colorFormatted} size={size} />
+      <FontAwesomeIcon icon={icon} color={colorFormatted} size={size}  style={{marginRight: 5}}/>
     </>
   );
 }

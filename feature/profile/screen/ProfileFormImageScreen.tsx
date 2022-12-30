@@ -27,9 +27,6 @@ function ProfileFormImageScreen() {
     // initialize use react-hook-form hook
     const { handleSubmit } = useForm();
 
-    // initialize use useAsyncStorage
-    const { getItem, mergeItem } = useAsyncStorage('User');
-
     // const [image, setImage] = useState();
     const [image, setImage] = useState<string>("");
 
@@ -38,6 +35,8 @@ function ProfileFormImageScreen() {
 
     // No permissions request is necessary for launching the image library
     const pickImageAsync = async () => {
+        // initialize use mergeItem from useAsyncStorage
+        const {mergeItem } = useAsyncStorage('User');
         let result = await ImagePicker.launchImageLibraryAsync({
             allowsEditing: true,
             quality: 1,
@@ -67,6 +66,8 @@ function ProfileFormImageScreen() {
     //get data from AsyncStorage ('User)
     useEffect(() => {
         async function getValueFromAsyncStorage() {
+            // initialize getItem from useAsyncStorage
+            const { getItem } = useAsyncStorage('User');
             try {
                 //get uri image from AsyncStorage ('User)
                 const value = await getItem();
@@ -84,7 +85,7 @@ function ProfileFormImageScreen() {
 
 
     return (
-        <Scaffold edge={['right']}>
+        <Scaffold edge={['top']}>
             <StatusBar style={Platform.OS === 'ios' ? 'light' : 'auto'} />
             <ScrollView contentContainerStyle={{ height: '100%', backgroundColor: "#FAFFFE" }} bounces={false}  >
                 <Box height="100%" >
@@ -105,12 +106,12 @@ function ProfileFormImageScreen() {
                                 </Box>
                                 <Box>
                                     <Image size={160} alt="add profile image" source={
-                                        require('../../assets/images/semicircle.png')
+                                        require('../../../assets/images/semicircle.png')
                                     } opacity={0.5} />
                                 </Box>
                                 <Box pt={70}>
                                     <Image size={10} borderRadius={5} alt="add profile image" source={
-                                        require('../../assets/images/camera.png')
+                                        require('../../../assets/images/camera.png')
                                     } />
                                 </Box>
                             </ZStack>

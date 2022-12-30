@@ -1,5 +1,5 @@
 import dayjs from 'dayjs';
-import { Box, FormControl, Input } from 'native-base';
+import { Box, FormControl, Input,useColorModeValue } from 'native-base';
 import React, { useEffect, useState } from 'react';
 import {
   Control,
@@ -76,7 +76,7 @@ function InputDateTimepickerGroup({
                 {label}
               </FormControl.Label>
             )}
-            <TouchableOpacity activeOpacity={0.8} onPress={showDatePicker}>
+            <TouchableOpacity activeOpacity={0.8} onPress={showDatePicker} >
               <Box pointerEvents="none" position="relative">
                 {mode === 'date' ? (
                   <Input

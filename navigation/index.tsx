@@ -15,9 +15,9 @@ import { ITheme, useTheme } from 'native-base';
 import AuthLoginOtpModalScreen from 'plawarn-rn/feature/auth/screens/AuthLoginOtpModalScreen';
 import AuthLoginScreen from 'plawarn-rn/feature/auth/screens/AuthLoginScreen';
 import OnboardScreen from 'plawarn-rn/feature/onboard/screens/OnboardScreen';
-import ProfileFormNameScreen from 'plawarn-rn/feature/profile/ProfileFormNameScreen';
-import ProfileFormAgeAndGenderScreen from 'plawarn-rn/feature/profile/ProfileFormAgeAndGenderScreen';
-import ProfileFormImageScreen from 'plawarn-rn/feature/profile/ProfileFormImageScreen';
+import ProfileFormNameScreen from 'plawarn-rn/feature/profile/screen/ProfileFormNameScreen';
+import ProfileFormAgeAndGenderScreen from 'plawarn-rn/feature/profile/screen/ProfileFormAgeAndGenderScreen';
+import ProfileFormImageScreen from 'plawarn-rn/feature/profile/screen/ProfileFormImageScreen';
 import * as React from 'react';
 import { ColorSchemeName, Pressable } from 'react-native';
 

@@ -23,9 +23,6 @@ import { useAsyncStorage } from '@react-native-async-storage/async-storage';
 
 function ProfileFormNameScreen() {
 
-  // initialize use transition hook
-  const { getItem } = useAsyncStorage('User');
-
   // initialize navigation
   const navigation = useNavigation();
 
@@ -38,11 +35,12 @@ function ProfileFormNameScreen() {
   //handle Name submit
   const handleFormSubmit = useCallback(
     async (payload: any) => {
+      // initialize use mergeItem from useAsyncStorage
+      const { mergeItem } = useAsyncStorage('User');
       try {
-
         //mertItem to AsyncStorage ('User)
         const setData = JSON.stringify(payload)
-        await AsyncStorage.mergeItem('User', setData)
+        await mergeItem(setData)
 
         navigation.navigate('ProfileFormAgeAndGenderScreen');
       } catch (e) {
@@ -56,6 +54,8 @@ function ProfileFormNameScreen() {
 
   useEffect(() => {
     async function getValueFromAsyncStorage() {
+      // initialize use getItem from useAsyncStorage
+      const { getItem } = useAsyncStorage('User');
       try {
         const value = await getItem();
         const result = value ? JSON.parse(value) : null;
@@ -71,48 +71,52 @@ function ProfileFormNameScreen() {
   }, []);
 
   return (
-    <Scaffold edge={['right']}>
+    <Scaffold edge={['top']}>
       <StatusBar style={Platform.OS === 'ios' ? 'light' : 'auto'} />
       <ScrollView contentContainerStyle={{ height: '100%', backgroundColor: "#FAFFFE" }} bounces={false}  >
         <Box height="100%" >
+          <Center>
+            <Heading fontSize={25} >มาเริ่มสร้างโปรไฟล์กันเถอะ</Heading>
+            <Text >ชื่อของคุณ</Text>
+          </Center>
           <Flex
             flexDirection="column"
             flex={1}
             px={4}
-            pt={6}
+            pt={4}
           >
-            <Center>
-              <Heading fontSize={25} >มาเริ่มสร้างโปรไฟล์กันเถอะ</Heading>
-              <Text >ชื่อของคุณ</Text>
-            </Center>
-            <VStack space={3} mt="5">
-              <Text> ชื่อ </Text>
-              <InputTextGroup
-                name='Fname'
-                placeholder='ชื่อ'
-                control={control}
-                rules={{
-                  required: ('กรุณากรอกชื่อ'),
-                }}
-                watch={watch}
-              ></InputTextGroup>
-              <Text> นามสกุล </Text>
-              <InputTextGroup
-                name='Lname'
-                // label='นามสกุล'
-                placeholder='นามสกุล'
-                control={control}
-                rules={{
-                  required: ('กรุณากรอกนามสกุล'),
-                }}
-                watch={watch}
-              ></InputTextGroup>
+            <VStack space={3} mt={5}>
+              <Box>
+                <Text> ชื่อ </Text>
+                <InputTextGroup
+                  name='Fname'
+                  placeholder='ชื่อ'
+                  control={control}
+                  rules={{
+                    required: ('กรุณากรอกชื่อ'),
+                  }}
+                  watch={watch}
+                ></InputTextGroup>
+              </Box>
+              <Box mt={3}>
+                <Text> นามสกุล </Text>
+                <InputTextGroup
+                  name='Lname'
+                  placeholder='นามสกุล'
+                  control={control}
+                  rules={{
+                    required: ('กรุณากรอกนามสกุล'),
+                  }}
+                  watch={watch}
+                ></InputTextGroup>
+              </Box>
             </VStack>
           </Flex>
           <Flex
             px={4}
             py={8}
-            justifyContent="flex-end">
+            justifyContent="flex-end"
+            >
             <Button
               colorScheme="orange"
               onPress={handleSubmit(handleFormSubmit)}

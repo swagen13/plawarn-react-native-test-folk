@@ -39,6 +39,7 @@ function InputDatePickerGroup({
 }: InputDatePickerGroupProp) {
   const [datePickerShown, setDatePickerShown] = useState<boolean>(false);
   const [selectedDateValue, setSelectedDateValue] = useState<string>('');
+  const [selectedMonth, setSelectedMonth] = useState(new Date());
 
 
   const showDatePicker = () => {
@@ -73,7 +74,7 @@ function InputDatePickerGroup({
           <FormControl isInvalid={name in errors}>
             {label && <FormControl.Label mb={0}>{label}</FormControl.Label>}
             <TouchableOpacity activeOpacity={0.8} onPress={showDatePicker}>
-              <Box pointerEvents="none" position="relative">
+              <Box pointerEvents="none" position="relative" >
                 <Input
                   bg="white"
                   placeholder={placeholder}
@@ -102,13 +103,17 @@ function InputDatePickerGroup({
       <DateTimePickerModal
         isVisible={datePickerShown}
         mode="date"
-        display={Platform.OS === 'ios' ? 'default' : 'spinner'}
+        display="spinner"
         onConfirm={datePickerSelectedHandle}
         onCancel={hideDatePickerHandle}
         locale="th-TH"
-        neutralButtonLabel="clear"
+        // neutralButtonLabel="clear"
         cancelTextIOS="ยกเลิก"
         confirmTextIOS="ตกลง"
+        isDarkModeEnabled={false}
+        // themeVariant="light"
+        // dateFormat="dayofweek day month"
+        // format="DD"
       />
     </>
   );
